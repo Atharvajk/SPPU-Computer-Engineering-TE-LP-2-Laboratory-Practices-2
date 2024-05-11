@@ -1,0 +1,16 @@
+<apex:page controller="ElectricityBill">
+    <apex:form >
+        <apex:pageBlock title="Generate Electricity Bill">
+            <apex:pageBlockSection columns="1">
+                <apex:inputText value="{!units}" label="Units Consumed"/>
+                <apex:commandButton action="{!generateBill}" value="Generate Bill"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Bill Details" rendered="{!NOT(ISBLANK(totalAmount))}">
+            <apex:pageBlockSection >
+                <apex:outputText value="Total Amount: Rs. "/>
+                <apex:outputText value="{!totalAmount}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

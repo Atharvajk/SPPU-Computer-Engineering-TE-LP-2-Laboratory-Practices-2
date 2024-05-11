@@ -1,0 +1,34 @@
+public class ElectricityBill {
+    public Double units { get; set; }
+    public Double totalAmount { get; set; }
+
+    public void generateBill() {
+        Map<String, Double> rateCard = new Map<String, Double> {
+            '0-100' => 2.5,
+            '100-200' => 5.0,
+            '200-300' => 7.5,
+            '>300' => 10.0
+        };
+        
+        System.debug('RATE CARD');
+        System.debug('----------------------');
+        for (String unitRange : rateCard.keySet()) {
+            System.debug(unitRange + ' kWh : Rs. ' + rateCard.get(unitRange));
+        }
+        System.debug('----------------------');
+        
+        totalAmount = calculateTotal(units, rateCard);
+    }
+
+    private Double calculateTotal(Double units, Map<String, Double> rateCard) {
+        if (units >= 0 && units <= 100) {
+            return units * rateCard.get('0-100');
+        } else if (units >= 101 && units <= 200) {
+            return 100 * rateCard.get('0-100') + (units - 100) * rateCard.get('100-200');
+        } else if (units >= 201 && units <= 300) {
+            return 100 * rateCard.get('0-100') + 100 * rateCard.get('100-200') + (units - 200) * rateCard.get('200-300');
+        } else {
+            return 100 * rateCard.get('0-100') + 100 * rateCard.get('100-200') + 100 * rateCard.get('200-300') + (units - 300) * rateCard.get('>300');
+        }
+    }
+}

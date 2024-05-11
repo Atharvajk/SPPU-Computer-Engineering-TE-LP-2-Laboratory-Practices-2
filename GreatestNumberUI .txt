@@ -1,0 +1,18 @@
+<apex:page controller="GreatestNumber">
+    <apex:form >
+        <apex:pageBlock title="Find Greatest Number">
+            <apex:pageBlockSection columns="1">
+                <apex:inputText value="{!number1}" label="Number 1"/>
+                <apex:inputText value="{!number2}" label="Number 2"/>
+                <apex:inputText value="{!number3}" label="Number 3"/>
+                <apex:commandButton action="{!findGreatest}" value="Find Greatest"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Result" rendered="{!NOT(ISBLANK(result))}">
+            <apex:pageBlockSection >
+                <apex:outputText value="{!result}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+                         

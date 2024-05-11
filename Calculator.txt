@@ -1,0 +1,87 @@
+public class Calculator {
+    public Integer num1 { get; set; }
+    public Integer num2 { get; set; }
+    public List<OperationResult> results { get; set; }
+    public Boolean showResults { get; set; }
+
+    public Calculator() {
+        results = new List<OperationResult>();
+        showResults = false;
+    }
+
+    public void performOperations() {
+        results.clear();
+        add(num1, num2);
+        subtract(num1, num2);
+        multiply(num1, num2);
+        divide(num1, num2);
+        modulus(num2, 3);
+        power(num1, 4);
+        absolute(-20);
+        square(num2);
+        factorial(5);
+        showResults = true;
+    }
+
+    public class OperationResult {
+        public String operation { get; set; }
+        public String result { get; set; }
+
+        public OperationResult(String operation, String result) {
+            this.operation = operation;
+            this.result = result;
+        }
+    }
+
+    public void add(Integer x, Integer y) {
+        Integer result = x + y;
+        results.add(new OperationResult('Addition', String.valueOf(result)));
+    }
+
+    public void subtract(Integer x, Integer y) {
+        Integer result = x - y;
+        results.add(new OperationResult('Subtraction', String.valueOf(result)));
+    }
+
+    public void multiply(Integer x, Integer y) {
+        Integer result = x * y;
+        results.add(new OperationResult('Multiplication', String.valueOf(result)));
+    }
+
+    public void divide(Integer x, Integer y) {
+        if (y != 0) {
+            Double result = (double)x / y;
+            results.add(new OperationResult('Division', String.valueOf(result)));
+        } else {
+            results.add(new OperationResult('Division', 'Divide by zero error!'));
+        }
+    }
+
+    public void modulus(Integer x, Integer y) {
+        Integer result = Math.mod(x, y);
+        results.add(new OperationResult('Modulus', String.valueOf(result)));
+    }
+
+    public void power(Integer x, Integer y) {
+        Double result = Math.pow(x, y);
+        results.add(new OperationResult('Power', String.valueOf(result)));
+    }
+
+    public void absolute(Integer x) {
+        Integer result = Math.abs(x);
+        results.add(new OperationResult('Absolute', String.valueOf(result)));
+    }
+
+    public void square(Integer x) {
+        Integer result = x * x;
+        results.add(new OperationResult('Square', String.valueOf(result)));
+    }
+
+    public void factorial(Integer x) {
+        Integer result = 1;
+        for (Integer i = 2; i <= x; i++) {
+            result *= i;
+        }
+        results.add(new OperationResult('Factorial', String.valueOf(result)));
+    }
+}

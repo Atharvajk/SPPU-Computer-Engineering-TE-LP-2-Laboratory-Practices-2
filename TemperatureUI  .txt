@@ -1,0 +1,16 @@
+<apex:page controller="CelsiusToFahrenheitController">
+    <apex:form >
+        <apex:pageBlock title="Convert Celsius to Fahrenheit">
+            <apex:pageBlockSection columns="1">
+                <apex:inputText value="{!celsius}" label="Celsius"/>
+                <apex:commandButton action="{!convertTemperature}" value="Convert"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Conversion Result" rendered="{!NOT(ISBLANK(fahrenheit))}">
+            <apex:pageBlockSection >
+                <apex:outputText value="Fahrenheit: "/>
+                <apex:outputText value="{!fahrenheit}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

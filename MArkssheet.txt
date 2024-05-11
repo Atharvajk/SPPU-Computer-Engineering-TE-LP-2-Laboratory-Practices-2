@@ -1,0 +1,32 @@
+public class StudentMarksheet {
+    public String studentName { get; set; }
+    public Integer mathsMarks { get; set; }
+    public Integer scienceMarks { get; set; }
+    public Integer englishMarks { get; set; }
+    public Integer totalMarks { get; set; }
+    public Decimal percentage { get; set; }
+    public String grade { get; set; }
+    public Boolean showMarksheet { get; set; }
+
+    public StudentMarksheet() {
+        showMarksheet = false;
+    }
+
+    public void generateMarksheet() {
+        totalMarks = mathsMarks + scienceMarks + englishMarks;
+        percentage = (Decimal.valueOf(totalMarks) / 300) * 100;
+        percentage = percentage.setScale(2);  // round to 2 decimal places
+
+        if (percentage >= 90) {
+            grade = 'A';
+        } else if (percentage >= 80) {
+            grade = 'B';
+        } else if (percentage >= 70) {
+            grade = 'C';
+        } else {
+            grade = 'D';
+        }
+
+        showMarksheet = true;
+    }
+}

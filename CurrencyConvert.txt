@@ -1,0 +1,41 @@
+public class CurrencyConverterController {
+    public String fromCurrency { get; set; }
+    public String toCurrency { get; set; }
+    public Decimal amount { get; set; }
+    public Decimal convertedAmount { get; set; }
+
+    private static Map<String, Decimal> rates = new Map<String, Decimal>{
+        'USD-EUR' => 0.82,
+        'USD-INR' => 75.0,
+        'EUR-USD' => 1.22,
+        'EUR-INR' => 91.5,
+        'INR-USD' => 0.013,
+        'INR-EUR' => 0.011
+    };
+
+    public List<SelectOption> getFromCurrencyOptions() {
+        List<SelectOption> options = new List<SelectOption>();
+        options.add(new SelectOption('USD', 'USD'));
+        options.add(new SelectOption('EUR', 'EUR'));
+        options.add(new SelectOption('INR', 'INR'));
+        return options;
+    }
+
+    public List<SelectOption> getToCurrencyOptions() {
+        List<SelectOption> options = new List<SelectOption>();
+        options.add(new SelectOption('USD', 'USD'));
+        options.add(new SelectOption('EUR', 'EUR'));
+        options.add(new SelectOption('INR', 'INR'));
+        return options;
+    }
+
+    public void convertCurrency() {
+        String conversionKey = fromCurrency + '-' + toCurrency;
+        if (rates.containsKey(conversionKey)) {
+            convertedAmount = amount * rates.get(conversionKey);
+            convertedAmount = convertedAmount.setScale(2); // Set scale to 2 decimal places
+        } else {
+            convertedAmount = null;
+        }
+    }
+}

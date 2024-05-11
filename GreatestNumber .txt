@@ -1,0 +1,22 @@
+public class GreatestNumber {
+    public Integer number1 { get; set; }
+    public Integer number2 { get; set; }
+    public Integer number3 { get; set; }
+    public String result { get; set; }
+
+    public void findGreatest() {
+        if (number1 != null && number2 != null && number3 != null) {
+            if (number1.equals(number2) && number2.equals(number3)) {
+                result = 'All numbers are equal.';
+            } else if (number1 > number2 && number1 > number3) {
+                result = number1 + ' is the greatest.';
+            } else if (number2 > number1 && number2 > number3) {
+                result = number2 + ' is the greatest.';
+            } else {
+                result = number3 + ' is the greatest.';
+            }
+        } else {
+            result = 'INVALID. TRY AGAIN!';
+        }
+    }
+}

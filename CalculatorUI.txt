@@ -1,0 +1,17 @@
+<apex:page controller="Calculator">
+    <apex:form >
+        <apex:pageBlock title="Calculator">
+            <apex:pageBlockSection columns="1">
+                <apex:inputText value="{!num1}" label="Number 1"/>
+                <apex:inputText value="{!num2}" label="Number 2"/>
+                <apex:commandButton action="{!performOperations}" value="Perform Operations"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Results" rendered="{!showResults}">
+            <apex:pageBlockTable value="{!results}" var="result">
+                <apex:column headerValue="Operation" value="{!result.operation}"/>
+                <apex:column headerValue="Result" value="{!result.result}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
